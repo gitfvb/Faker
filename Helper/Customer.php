@@ -116,7 +116,7 @@ class Customer extends AbstractHelper
         try {
             $hashedPassword = $this->encryptorInterface->getHash($this->faker->word, true);
             $customer = $this->customerRepositoryInterface->save($customer, $hashedPassword);
-
+            $this->createCustomerAddress($customer);
             return $customer;
         } catch (\Exception $e) {
             $this->logger->critical($e);
